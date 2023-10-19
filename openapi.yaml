@@ -1,0 +1,349 @@
+openapi: 3.0.0
+info:
+  title: Challenge 5 dokumentasi
+  description: OK. ini API untuk mengelola nasabah, akun bank, dan transaksi. ok
+  version: 1.0.0
+  contact:
+    email: riska.jeen@gmail.com
+servers:
+  - url: http://localhost:3000
+paths:
+  /nasabah:
+    post:
+      summary: Membuat Nasabah
+      operationId: createNasabah
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NasabahRequest'
+      responses:
+        '200':
+          description: Nasabah berhasil dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NasabahResponse'
+    get:
+      summary: Mendapatkan Daftar Nasabah
+      operationId: getNasabahList
+      responses:
+        '200':
+          description: Daftar Nasabah berhasil didapatkan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NasabahListResponse'
+  /nasabah/{id}:
+    get:
+      summary: Mendapatkan Detail Nasabah
+      operationId: getNasabah
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID Nasabah
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Nasabah berhasil ditemukan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NasabahResponse'
+    put:
+      summary: Memperbarui Informasi Nasabah
+      operationId: updateNasabah
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID Nasabah
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NasabahRequest'
+      responses:
+        '200':
+          description: Nasabah berhasil diperbarui
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NasabahResponse'
+    delete:
+      summary: Menghapus Nasabah
+      operationId: deleteNasabah
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID Nasabah
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Nasabah berhasil dihapus
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+  /akun:
+    post:
+      summary: Membuat Akun Bank
+      operationId: createAkunBank
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AkunRequest'
+      responses:
+        '200':
+          description: Akun Bank berhasil dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AkunResponse'
+    get:
+      summary: Mendapatkan Daftar Akun Bank
+      operationId: getAkunBankList
+      responses:
+        '200':
+          description: Daftar Akun Bank berhasil didapatkan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AkunListResponse'
+  /akun/{id}:
+    get:
+      summary: Mendapatkan Detail Akun Bank
+      operationId: getAkunBank
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID Akun Bank
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Akun Bank berhasil ditemukan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AkunResponse'
+    put:
+      summary: Memperbarui Informasi Akun Bank
+      operationId: updateAkunBank
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID Akun Bank
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AkunRequest'
+      responses:
+        '200':
+          description: Akun Bank berhasil diperbarui
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AkunResponse'
+    delete:
+      summary: Menghapus Akun Bank
+      operationId: deleteAkunBank
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID Akun Bank
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Akun Bank berhasil dihapus
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+  /transaksi:
+    post:
+      summary: Membuat Transaksi
+      operationId: createTransaksi
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransaksiRequest'
+      responses:
+        '200':
+          description: Transaksi berhasil dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransaksiResponse'
+    get:
+      summary: Mendapatkan Daftar Transaksi
+      operationId: getTransaksiList
+      responses:
+        '200':
+          description: Daftar Transaksi berhasil didapatkan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransaksiListResponse'
+  /transaksi/{id}:
+    get:
+      summary: Mendapatkan Detail Transaksi
+      operationId: getTransaksi
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID Transaksi
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Transaksi berhasil ditemukan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransaksiResponse'
+    put:
+      summary: Memperbarui Informasi Transaksi
+      operationId: updateTransaksi
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID Transaksi
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransaksiRequest'
+      responses:
+        '200':
+          description: Transaksi berhasil diperbarui
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransaksiResponse'
+    delete:
+      summary: Menghapus Transaksi
+      operationId: deleteTransaksi
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID Transaksi
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Transaksi berhasil dihapus
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+components:
+  schemas:
+    NasabahRequest:
+      type: object
+      properties:
+        NamaNasabah:
+          type: string
+        Email:
+          type: string
+        Password:
+          type: string
+    NasabahResponse:
+      type: object
+      properties:
+        NasabahID:
+          type: integer
+        NamaNasabah:
+          type: string
+        Email:
+          type: string
+    NasabahListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/NasabahResponse'
+    AkunRequest:
+      type: object
+      properties:
+        NasabahID:
+          type: integer
+        Saldo:
+          type: integer
+    AkunResponse:
+      type: object
+      properties:
+        AkunID:
+          type: integer
+        NasabahID:
+          type: integer
+        Saldo:
+          type: integer
+    AkunListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/AkunResponse'
+    TransaksiRequest:
+      type: object
+      properties:
+        AkunID:
+          type: integer
+        JenisTransaksi:
+          type: string
+        Jumlah:
+          type: integer
+    TransaksiResponse:
+      type: object
+      properties:
+        TransaksiID:
+          type: integer
+        AkunID:
+          type: integer
+        JenisTransaksi:
+          type: string
+        Jumlah:
+          type: integer
+    TransaksiListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransaksiResponse'
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string

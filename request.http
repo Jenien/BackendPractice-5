@@ -1,0 +1,205 @@
+### Create Nasabah (POST)
+POST http://localhost:3000/nasabah
+Content-Type: application/json
+
+{
+  "NamaNasabah": "NamaNasabah ke1",
+  "Email": "email@email.com",
+  "Password": "Password123"
+}
+
+### Create Nasabah (POST)
+POST http://localhost:3000/nasabah
+Content-Type: application/json
+
+
+{
+  "NamaNasabah": "NamaNasabah ke2",
+  "Email": "gmail@email.com",
+  "Password": "Password1234"
+}
+
+### Create Nasabah (POST)
+POST http://localhost:3000/nasabah
+Content-Type: application/json
+
+
+{
+  "NamaNasabah": "NamaNasabah ke4",
+  "Email": "bmail@email.com",
+  "Password": "Password1235"
+}
+
+### Create Nasabah (POST)
+POST http://localhost:3000/nasabah
+Content-Type: application/json
+
+{
+  "NamaNasabah": "NamaNasabah ke5",
+  "Email": "semail@email.com",
+  "Password": "Password1236"
+}
+
+### Create Nasabah (POST)
+POST http://localhost:3000/nasabah
+Content-Type: application/json
+
+{
+  "NamaNasabah": "NamaNasabah ke6",
+  "Email": "umail@email.com",
+  "Password": "Password1237"
+}
+
+### Create Akun Bank (POST)
+POST http://localhost:3000/akun
+Content-Type: application/json
+
+{
+  "NasabahID": 1,
+  "Saldo": 10000
+}
+
+### Create Akun Bank (POST)
+POST http://localhost:3000/akun
+Content-Type: application/json
+
+{
+  "NasabahID": 3,
+  "Saldo": 30000
+}
+
+###  Create Akun Bank (POST)
+POST http://localhost:3000/akun
+Content-Type: application/json
+
+{
+  "NasabahID": 4,
+  "Saldo": 50000
+}
+
+###  Create Akun Bank (POST)
+POST http://localhost:3000/akun
+Content-Type: application/json
+
+{
+  "NasabahID": 6,
+  "Saldo": 150000
+}
+
+
+### Create Transaksi (POST)
+POST http://localhost:3000/transaksi
+Content-Type: application/json
+
+{
+  "AkunID": 2,
+  "JenisTransaksi": "withdraw",
+  "Jumlah": 1000
+}
+
+### Create Transaksi (POST)
+POST http://localhost:3000/transaksi
+Content-Type: application/json
+
+{
+  "AkunID": 3,
+  "JenisTransaksi": "deposit",
+  "Jumlah": 5000
+}
+
+### Create Transaksi (POST)
+POST http://localhost:3000/transaksi
+Content-Type: application/json
+
+{
+  "AkunID": 1,
+  "JenisTransaksi": "withdraw",
+  "Jumlah": 2000
+}
+
+#### Create Transaksi (POST)
+POST http://localhost:3000/transaksi
+Content-Type: application/json
+
+{
+  "AkunID": 3,
+  "JenisTransaksi": "deposit",
+  "Jumlah": 2000
+}
+
+### Create Transaksi (POST)
+POST http://localhost:3000/transaksi
+Content-Type: application/json
+
+{
+  "AkunID": 5,
+  "JenisTransaksi": "deposit",
+  "Jumlah": 10000
+}
+
+######################### GET
+
+### Get Nasabah List  (READ)
+GET http://localhost:3000/nasabah
+
+### Get Nasabah Detail by id(READ)
+GET  http://localhost:3000/nasabah/1
+
+### Get Akun Bank List (READ)
+GET http://localhost:3000/akun
+
+### Get Akun Bank Detail (READ)
+GET http://localhost:3000/akun/3
+
+### Get Transaksi List (READ)
+GET http://localhost:3000/transaksi
+
+### Get Transaksi Detail (READ)
+GET http://localhost:3000/transaksi/1
+
+
+############### UPDATED
+
+### Update Transaksi (UPDATED)
+PUT http://localhost:3000/transaksi/1
+Content-Type: application/json
+
+{
+    "JenisTransaksi": "deposit",
+    "Jumlah": 1000
+}
+### Update Transaksi (UPDATED)
+PUT http://localhost:3000/transaksi/3
+Content-Type: application/json
+
+{
+    "JenisTransaksi": "withdraw",
+    "Jumlah": 4000
+}
+
+### Update Nasabah  (UPDATED)
+PUT http://localhost:3000/nasabah/1
+Content-Type: application/json
+
+{
+    "NamaNasabah": "jinbe Updated"
+}
+
+### Update Akun Bank (UPDATED)
+PUT http://localhost:3000/akun/1
+Content-Type: application/json
+
+{
+    "Saldo": 50000
+}
+
+#################### DELETE
+
+### Delete Nasabah 
+DELETE http://localhost:3000/nasabah/3
+
+### Delete Akun Bank 
+DELETE http://localhost:3000/akun/3
+
+### Delete Transaksi
+DELETE http://localhost:3000/transaksi/3
