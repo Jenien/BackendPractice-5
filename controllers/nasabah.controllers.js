@@ -1,25 +1,82 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
+const generateToken = (user) => {
+    return jwt.sign({ id: user.NasabahID }, process.env.JWT_SECRET, { expiresIn: '1h' });
+};
+
+const verifyToken = (token) => {
+    return jwt.verify(token, process.env.JWT_SECRET);
+};
 
 const createNasabah = async (req, res, next) => {
     try {
         const { NamaNasabah, Email, Password } = req.body;
+        const hashedPassword = await bcrypt.hash(Password, 10);
         const nasabah = await prisma.nasabah.create({
             data: {
                 NamaNasabah,
                 Email,
-                Password
+                Password: hashedPassword
             }
         });
+        const token = jwt.sign({ nasabahId: nasabah.NasabahID }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.status(200).json({
             status: true,
-            message: 'Nasabah sukses di bikin',
-            data: nasabah
+            message: 'Nasabah berhasil dibuat',
+            data: {
+                nasabah,
+                token
+            }
         });
     } catch (error) {
         next(error);
     }
 };
+
+const loginNasabah = async (req, res, next) => {
+    try {
+        const { Email, Password } = req.body;
+        const nasabah = await prisma.nasabah.findUnique({
+            where: {
+                Email
+            }
+        });
+
+        if (!nasabah) {
+            return res.status(404).json({
+                status: false,
+                message: 'Email tidak ditemukan',
+                data: null
+            });
+        }
+
+        const isValidPassword = await bcrypt.compare(Password, nasabah.Password);
+
+        if (!isValidPassword) {
+            return res.status(401).json({
+                status: false,
+                message: 'Password salah',
+                data: null
+            });
+        }
+
+        const token = generateToken(nasabah); 
+        res.status(200).json({
+            status: true,
+            message: 'Login berhasil',
+            data: {
+                nasabah,
+                token
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
 
 const getNasabahList = async (req, res, next) => {
     try {
@@ -134,4 +191,4 @@ const deleteNasabah = async (req, res, next) => {
 
 };
 
-module.exports = { createNasabah, getNasabahList, getNasabah, updateNasabah, deleteNasabah };
+module.exports = { createNasabah, getNasabahList, getNasabah, updateNasabah, deleteNasabah,loginNasabah };

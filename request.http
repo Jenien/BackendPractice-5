@@ -1,3 +1,12 @@
+POST http://localhost:3000/nasabah/register
+Content-Type: application/json
+
+{
+  "NamaNasabah": "NamaNasabah auth coba",
+  "Email": "email baru 2@email.com",
+  "Password": "Password1231"
+}
+
 ### Create Nasabah (POST)
 POST http://localhost:3000/nasabah
 Content-Type: application/json
@@ -135,6 +144,15 @@ Content-Type: application/json
   "AkunID": 5,
   "JenisTransaksi": "deposit",
   "Jumlah": 10000
+}
+
+### login
+POST http://localhost:3000/nasabah/login
+Content-Type: application/json
+
+{
+  "Email": "email baru 2@email.com",
+  "Password": "Password1231"
 }
 
 ######################### GET

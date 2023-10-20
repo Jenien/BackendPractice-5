@@ -8,7 +8,51 @@ info:
 servers:
   - url: http://localhost:3000
 paths:
+  /nasabah/register:
+    post:
+      summary: Register Nasabah
+      operationId: registerNasabah
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '200':
+          description: Nasabah berhasil terdaftar
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResponse'
+  /nasabah/login:
+    post:
+      summary: Login Nasabah
+      operationId: loginNasabah
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
   /nasabah:
+    get:
+      summary: Mendapatkan Daftar Nasabah
+      operationId: getNasabahList
+      responses:
+        '200':
+          description: Daftar Nasabah berhasil didapatkan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NasabahListResponse'
     post:
       summary: Membuat Nasabah
       operationId: createNasabah
@@ -25,16 +69,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NasabahResponse'
-    get:
-      summary: Mendapatkan Daftar Nasabah
-      operationId: getNasabahList
-      responses:
-        '200':
-          description: Daftar Nasabah berhasil didapatkan
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NasabahListResponse'
   /nasabah/{id}:
     get:
       summary: Mendapatkan Detail Nasabah
@@ -346,4 +380,40 @@ components:
         status:
           type: boolean
         message:
+          type: string
+    RegisterRequest:
+      type: object
+      properties:
+        NamaNasabah:
+          type: string
+        Email:
+          type: string
+        Password:
+          type: string
+    RegisterResponse:
+      type: object
+      properties:
+        NasabahID:
+          type: integer
+        NamaNasabah:
+          type: string
+        Email:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        Email:
+          type: string
+        Password:
+          type: string
+    LoginResponse:
+      type: object
+      properties:
+        NasabahID:
+          type: integer
+        NamaNasabah:
+          type: string
+        Email:
+          type: string
+        Token:
           type: string
